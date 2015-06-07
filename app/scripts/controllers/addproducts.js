@@ -7,8 +7,10 @@
  * # AddProductsCtrl
  * Controller of the GarageCommerceApp
  */
-angular.module('GarageCommerceApp')//
-  .controller('AddProductsCtrl', function ($scope, Category, Auth, AWSService) {
+angular.module('GarageCommerceApp')
+
+  .controller('AddProductsCtrl',
+  function ($scope, $log, Category, Auth, AWSService) {
     $scope.categories = Category.getCategories();
 
     $scope.newProduct = {};
@@ -16,7 +18,20 @@ angular.module('GarageCommerceApp')//
     $scope.addProduct = function () {
       $scope.newProduct.userId = $scope.user.id;
       $scope.newProduct.userName = $scope.user.name;
-      $scope.newProduct.picUrl = 'sw3/somUrl';
       AWSService.saveProductData($scope.newProduct);
+      $scope.newProduct = {};
+      $scope.uploadedPicUrl = null;
+    };
+    $scope.uploadImage = function (files) {
+      AWSService.uploadPic(files)//
+        .then(function (data) {
+          $scope.newProduct.picUrl = data;
+          $scope.uploadedPicUrl = 'https://s3.amazonaws.com/bionikspoon-garage-commerce/' +
+                                  data;
+
+        })//
+        .catch(function (error) {
+          $log.error('addproducts    ', 'error: ', error);
+        });
     };
   });

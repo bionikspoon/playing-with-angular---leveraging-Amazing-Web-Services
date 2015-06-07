@@ -8,20 +8,13 @@
  * Controller of the GarageCommerceApp
  */
 angular.module('GarageCommerceApp')//
-  .controller('ProductsCtrl', function ($scope, $stateParams) {
+  .controller('ProductsCtrl',
+  function ($scope, $stateParams, $log, AWSService) {
     $scope.category = $stateParams.category;
-    $scope.productsListing = [
-      {
-        'product_id': '123',
-        title: 'Baby Rattles',
-        price: 2,
-        userName: 'John Doe'
-      },
-      {
-        'product_id': '456',
-        title: 'Supercomputer laptop',
-        price: 21,
-        userName: 'Sandy Peters'
-      }
-    ];
+    $scope.productsListing = [];
+
+    AWSService.getProductsByCategory($scope.category)//
+      .then(function (data) {
+        $scope.productsListing = data.Items;
+      });
   });

@@ -21,6 +21,12 @@ angular.module('GarageCommerceApp')
     var s3bucket;
 
     // Private constructor
+    /**
+     *
+     * @param $q
+     * @param $log
+     * @constructor
+     */
     function AWSService($q, $log) {
       this.init = function (token) {
         var defer = $q.defer();
@@ -49,7 +55,15 @@ angular.module('GarageCommerceApp')
 
         return defer.promise;
       };
+
       this.saveProductData = function (newProduct) {
+        if (!dynamo) {
+          $log.error('aws    ',
+            'AWS not initialized, login required',
+            'dynamo: ',
+            dynamo);
+        }
+
         var timeStamp = new Date().getTime();
         var UUID = newProduct.userId + '-' + timeStamp;
         var productData = {
@@ -64,6 +78,8 @@ angular.module('GarageCommerceApp')
             userName: {S: newProduct.userName}
           }
         };
+
+        //noinspection JSUnresolvedFunction
         dynamo.putItem(productData, function (error) {
           if (error) {
             $log.error('error: ', error);
@@ -71,6 +87,61 @@ angular.module('GarageCommerceApp')
             $log.info('Product Saved!!');
           }
         });
+      };
+      this.uploadPic = function (files) {
+        if (!dynamo) {
+          $log.error('aws    ',
+            'AWS not initialized, login required',
+            's3bucket: ',
+            s3bucket);
+        }
+        var defer = $q.defer();
+        var file = files[0];
+        var data = {
+          Key: file.name,
+          Body: file,
+          ContentType: file.type
+        };
+        s3bucket.putObject(data, function (error, data) {
+          var fileName = file.name;
+          defer.resolve(fileName);
+
+          if (error) {
+            defer.reject(error);
+            $log.error('aws    ', 'error: ', error);
+          } else {
+            $log.info('File Successfully uploaded', data);
+          }
+        });
+        return defer.promise;
+      };
+
+      this.getProductsByCategory = function (category) {
+
+        var defer = $q.defer();
+        var params = {
+          Limit: 100,
+          ScanFilter: {
+            'category': {
+              AttributeValueList: [
+                {
+                  S: category
+                }
+              ],
+              ComparisonOperator: 'CONTAINS'
+            }
+          }
+        };
+
+        //noinspection JSUnresolvedFunction
+        dynamo.scan(params, function (error, data) {
+          if (data) {
+            defer.resolve(data);
+          } else if (error) {
+            $log.error('aws    ', 'error: ', error);
+          }
+        });
+        return defer.promise;
       };
     }
 
@@ -90,6 +161,7 @@ angular.module('GarageCommerceApp')
     };
 
     // Method for instantiating
+    //noinspection JSUnusedGlobalSymbols
     this.$get = function ($q, $log) {
       return new AWSService($q, $log);
     };

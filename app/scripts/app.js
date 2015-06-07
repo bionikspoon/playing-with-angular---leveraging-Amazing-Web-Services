@@ -30,7 +30,22 @@ angular//
     $stateProvider.state('category', {
       url: '/:category',
       templateUrl: 'views/partials/products.html',
-      controller: 'ProductsCtrl'
+      controller: 'ProductsCtrl',
+      resolve: {
+        Facebook: 'Facebook',
+        FBToken: function (Facebook) {
+          return Facebook.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+              return response.token;
+            }
+          });
+        },
+        AWSinit: function (FBToken, AWSService) {
+          var token = FBToken.authResponse.accessToken;
+          return AWSService.init(token).$promise;
+
+        }
+      }
     });
     $stateProvider.state('category.products', {
       url: '/:id',
@@ -46,6 +61,6 @@ angular//
   .config(function (AWSServiceProvider) {
     AWSServiceProvider.setRoleArn('arn:aws:iam::473550578587:role/garageCommerceUser');
     AWSServiceProvider.setRegion('us-east-1');
-    AWSServiceProvider.setS3Bucket('bucket=bionikspoon-garage-commerce');
+    AWSServiceProvider.setS3Bucket('bionikspoon-garage-commerce');
     AWSServiceProvider.setDynamoTableName('garage-commerce');
   });

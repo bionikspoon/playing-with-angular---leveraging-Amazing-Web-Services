@@ -8,13 +8,13 @@
         <div class="listing"
              ng-repeat="product in productsListing">
             <h2>
-                <a ng-href="#/{{ category + '/' + product.product_id }}">
-                    {{ product.title }}
+                <a ng-href="#/{{ category + '/' + product.product_id.S }}">
+                    {{ product.title.S }}
                 </a>
             </h2>
-            <h5>{{ product.price | currency }}</h5>
+            <h5>{{ product.price.S | currency }}</h5>
 
-            <p><i>by:{{ product.userName }}</i></p>
+            <p><i>by:{{ product.userName.S }}</i></p>
         </div>
         <!-- /.listing -->
     </div>

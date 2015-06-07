@@ -8,11 +8,11 @@
       class="form-horizontal"
       ng-submit="addProduct()">
 
-    <!--Input for Category-->
+    <!--Input for Product Category-->
     <div class="form-group">
         <label for="category"
                class="col-sm-2 control-label">
-            Category
+            Product Category
         </label><!-- /.col-sm-2 control-label -->
         <div class="col-sm-10">
             <select class="form-control"
@@ -23,6 +23,35 @@
                     {{ category }}
                 </option>
             </select><!-- /#category.form-control -->
+        </div>
+                <!-- /.col-sm-10 -->
+    </div>
+    <!-- /.form-group -->
+
+    <div class="row"
+         ng-if="uploadedPicUrl">
+        <div class="col-sm-offset-2 col-sm-10">
+            <img ng-src="{{ uploadedPicUrl }}"
+                 width="250" />
+        </div>
+        <!-- /.col-sm-offset-2 col-sm-10 -->
+    </div>
+    <!-- /.row -->
+
+    <!--Input for Product Picture-->
+    <div class="form-group">
+        <label for="pic"
+               class="col-sm-2 control-label">
+            Product Picture
+        </label><!-- /.col-sm-2 control-label -->
+        <div class="col-sm-10">
+            <input type="file"
+                   class="form-control"
+                   id="pic"
+                   accept="image/*"
+                   ng-model="newProduct.pic"
+                   onchange="angular.element(this).scope().uploadImage(this.files)"
+                    /><!-- /#pic.form-control -->
         </div>
                 <!-- /.col-sm-10 -->
     </div>
@@ -81,6 +110,7 @@
                 <!-- /.col-sm-10 -->
     </div>
     <!-- /.form-group -->
+
 
     <!-- #addPage: Submit -->
     <div class="form-group">

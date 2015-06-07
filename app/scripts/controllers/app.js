@@ -10,30 +10,30 @@
 angular.module('GarageCommerceApp')
 
   .controller('AppCtrl',
-  function ($scope, $log, Category, Facebook, Auth, AWSService) {
+  function ($scope, $log, Category) {
     $scope.categories = Category.getCategories();
     $scope.user = {};
     $scope.shoppingBasket = [];
-
-    Facebook.getLoginStatus(function (response) {
-      if (response.status === 'connected') {
-        Auth.getUserInfo()//
-          .then(function (data) {
-            $scope.user = data;
-          });
-      }
-
-      if (response.authResponse) {
-        var token = response.authResponse.accessToken;
-
-        AWSService.init(token)//
-          .then(function (data) {
-            $log.info('app    ', 'data: ', data);
-          })//
-          .catch(function (error) {
-            $log.error('error: ', error);
-          });
-      }
-
-    });
+    //
+    //Facebook.getLoginStatus(function (response) {
+    //  if (response.status === 'connected') {
+    //    Auth.getUserInfo()//
+    //      .then(function (data) {
+    //        $scope.user = data;
+    //      });
+    //  }
+    //
+    //  if (response.authResponse) {
+    //    var token = response.authResponse.accessToken;
+    //
+    //    AWSService.init(token)//
+    //      .then(function (data) {
+    //        $log.info('app    ', 'data: ', data);
+    //      })//
+    //      .catch(function (error) {
+    //        $log.error('error: ', error);
+    //      });
+    //  }
+    //
+    //});
   });
