@@ -48,14 +48,34 @@ angular.module('GarageCommerceApp')
         });
 
         return defer.promise;
-
+      };
+      this.saveProductData = function (newProduct) {
+        var timeStamp = new Date().getTime();
+        var UUID = newProduct.userId + '-' + timeStamp;
+        var productData = {
+          Item: {
+            'product_id': {S: UUID},
+            category: {S: newProduct.category},
+            title: {S: newProduct.title},
+            description: {S: newProduct.description},
+            price: {S: newProduct.price.toString()},
+            picUrl: {S: newProduct.picUrl},
+            userId: {S: newProduct.userId},
+            userName: {S: newProduct.userName}
+          }
+        };
+        dynamo.putItem(productData, function (error) {
+          if (error) {
+            $log.error('error: ', error);
+          } else {
+            $log.info('Product Saved!!');
+          }
+        });
       };
     }
 
     // Public API for configuration
-    /*this.setSalutation = function (s) {
-     salutation = s;
-     };*/
+
     this.setRoleArn = function (arn) {
       roleArn = arn;
     };

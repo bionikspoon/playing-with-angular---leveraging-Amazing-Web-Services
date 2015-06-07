@@ -12,13 +12,13 @@ angular.module('GarageCommerceApp')//
     $scope.category = $stateParams.category;
     $scope.productsListing = [
       {
-        product_id: '123', // jshint ignore:line
+        'product_id': '123',
         title: 'Baby Rattles',
         price: 2,
         userName: 'John Doe'
       },
       {
-        product_id: '456', // jshint ignore:line
+        'product_id': '456',
         title: 'Supercomputer laptop',
         price: 21,
         userName: 'Sandy Peters'
