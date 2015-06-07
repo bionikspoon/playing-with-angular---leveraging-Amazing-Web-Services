@@ -7,7 +7,8 @@
  * # ProductsCtrl
  * Controller of the GarageCommerceApp
  */
-angular.module('GarageCommerceApp').controller('ProductsCtrl',
+angular.module('GarageCommerceApp')//
+  .controller('ProductsCtrl',
   function ($scope, $stateParams) {
     $scope.category = $stateParams.category;
     $scope.productsListing = [

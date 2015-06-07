@@ -1,1 +1,28 @@
-<p>This is the partials/products view.</p>
+<div class="page-header">
+  <h1>
+    {{ category }} </h1>
+</div><!-- /.page-header -->
+
+
+<div class="col-md-5">
+  <div class="row-fluid listing sidebar">
+    <div class="listing"
+         ng-repeat="product in productsListing">
+      <h2>
+        <a ng-href="#/{{ category + '/' + product.product_id }}">
+          {{ product.title }}
+        </a>
+      </h2>
+      <h5>{{ product.price | currency }}</h5>
+
+      <p><i>by:{{ product.userName }}</i></p>
+    </div>
+    <!-- /.listing -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.col-md-5 -->
+
+<div class="col-md-7">
+  <ui-view class="slide"></ui-view>
+  <!-- /.slide -->
+</div><!-- /.col-md-7 -->

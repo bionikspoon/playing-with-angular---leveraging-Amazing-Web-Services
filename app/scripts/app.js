@@ -29,7 +29,7 @@ angular//
     $stateProvider.state('category', {
       url: '/:category',
       templateUrl: 'views/partials/products.html',
-      controller: 'AddProductsCtrl'
+      controller: 'ProductsCtrl'
     });
     $stateProvider.state('category.products', {
       url: '/:id',
