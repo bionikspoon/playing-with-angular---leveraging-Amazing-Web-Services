@@ -20,8 +20,8 @@ angular.module('GarageCommerceApp')
           .then(function (data) {
             $scope.user = data;
           });
-      } else {
+      } /*else {
         Facebook.login();
-      }
+      }*/
     });
   });

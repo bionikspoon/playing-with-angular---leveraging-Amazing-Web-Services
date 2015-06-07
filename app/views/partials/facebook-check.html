@@ -1,0 +1,15 @@
+<p class="navbar-text navbar-right"
+   ng-if="user.name">
+  Welcome {{ user.name }}
+  | <a href="#/add">Add Products</a>
+  | <a class="glyphicon glyphicon-off"
+       ng-click="logout()"
+       href></a>
+  <!-- /.glyphicon glyphicon-off -->
+</p>
+<button class="btn btn-sm btn-info navbar-btn navbar-right"
+        ng-if="!user.name"
+        ng-click="login()">
+  Facebook Login
+</button><!-- /.btn btn-sm btn-info navbar-btn navbar-right -->
+
