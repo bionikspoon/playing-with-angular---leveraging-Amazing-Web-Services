@@ -9,7 +9,8 @@
  */
 angular.module('GarageCommerceApp')
 
-  .controller('AppCtrl', function ($scope, Category, Facebook, Auth) {
+  .controller('AppCtrl',
+  function ($scope, $log, Category, Facebook, Auth, AWSService) {
     $scope.categories = Category.getCategories();
     $scope.user = {};
     $scope.shoppingBasket = [];
@@ -20,8 +21,19 @@ angular.module('GarageCommerceApp')
           .then(function (data) {
             $scope.user = data;
           });
-      } /*else {
-        Facebook.login();
-      }*/
+      }
+
+      if (response.authResponse) {
+        var token = response.authResponse.accessToken;
+
+        AWSService.init(token)//
+          .then(function (data) {
+            $log.info('app    ', 'data: ', data);
+          })//
+          .catch(function (error) {
+            $log.error('error: ', error);
+          });
+      }
+
     });
   });

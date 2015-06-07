@@ -7,7 +7,7 @@
  * # AddProductsCtrl
  * Controller of the GarageCommerceApp
  */
-angular.module('GarageCommerceApp')
-  .controller('AddProductsCtrl', function ($scope) {
+angular.module('GarageCommerceApp')//
+  .controller('AddProductsCtrl', function (/*$scope*/) {
 
   });

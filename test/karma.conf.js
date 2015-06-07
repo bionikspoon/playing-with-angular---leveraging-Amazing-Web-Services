@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-facebook/lib/angular-facebook.js',
       'bower_components/angular-loader/angular-loader.js',
       'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+      'bower_components/aws-sdk-js/dist/aws-sdk.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

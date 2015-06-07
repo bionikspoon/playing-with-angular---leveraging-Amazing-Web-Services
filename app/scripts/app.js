@@ -41,4 +41,11 @@ angular//
 
   .config(function (FacebookProvider) {
     FacebookProvider.init('1579822162291570');
+  })
+
+  .config(function (AWSServiceProvider) {
+    AWSServiceProvider.setRoleArn('arn:aws:iam::473550578587:role/garageCommerceUser');
+    AWSServiceProvider.setRegion('us-east-1');
+    AWSServiceProvider.setS3Bucket('bucket=bionikspoon-garage-commerce');
+    AWSServiceProvider.setDynamoTableName('garage-commerce');
   });
