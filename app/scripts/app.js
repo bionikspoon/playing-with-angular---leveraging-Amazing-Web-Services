@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name garageCommerceApp
+ * @name GarageCommerceApp
  * @description
- * # garageCommerceApp
+ * # GarageCommerceApp
  *
  * Main module of the application.
  */
 angular
-  .module('garageCommerceApp', [
+  .module('GarageCommerceApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

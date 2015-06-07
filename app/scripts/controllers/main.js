@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name garageCommerceApp.controller:MainCtrl
+ * @name GarageCommerceApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the garageCommerceApp
+ * Controller of the GarageCommerceApp
  */
-angular.module('garageCommerceApp')
+angular.module('GarageCommerceApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
