@@ -1,1 +1,98 @@
-<p>This is the partials/add-products view.</p>
+<div class="page-header">
+    <h1>Add your Product</h1>
+</div><!-- /.page-header -->
+
+<form role="form"
+      id="addPage"
+      name="addPage"
+      class="form-horizontal"
+      ng-submit="addProduct()">
+
+    <!--Input for Category-->
+    <div class="form-group">
+        <label for="category"
+               class="col-sm-2 control-label">
+            Category
+        </label><!-- /.col-sm-2 control-label -->
+        <div class="col-sm-10">
+            <select class="form-control"
+                    id="category"
+                    ng-model="newProduct.category"
+                    required>
+                <option ng-repeat="category in categories">
+                    {{ category }}
+                </option>
+            </select><!-- /#category.form-control -->
+        </div>
+                <!-- /.col-sm-10 -->
+    </div>
+    <!-- /.form-group -->
+
+    <!--Input for Product Title-->
+    <div class="form-group">
+        <label for="title"
+               class="col-sm-2 control-label">
+            Product Title
+        </label><!-- /.col-sm-2 control-label -->
+        <div class="col-sm-10">
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   ng-model="newProduct.title"
+                   placeholder="Product Title"
+                   required /><!-- /#title.form-control -->
+        </div>
+                <!-- /.col-sm-10 -->
+    </div>
+    <!-- /.form-group -->
+
+    <!--Input for Product Description-->
+    <div class="form-group">
+        <label for="description"
+               class="col-sm-2 control-label">
+            Product Description
+        </label><!-- /.col-sm-2 control-label -->
+        <div class="col-sm-10">
+          <textarea rows="8"
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    ng-model="newProduct.description"
+                    placeholder="Product Description"
+                    required></textarea><!-- /#description.form-control -->
+        </div>
+                <!-- /.col-sm-10 -->
+    </div>
+    <!-- /.form-group -->
+
+    <!--Input for Product Price-->
+    <div class="form-group">
+        <label for="price"
+               class="col-sm-2 control-label">
+            Product Price
+        </label><!-- /.col-sm-2 control-label -->
+        <div class="col-sm-10">
+            <input type="number"
+                   class="form-control"
+                   id="price"
+                   ng-model="newProduct.price"
+                   placeholder="Product Price" /><!-- /#price.form-control -->
+        </div>
+                <!-- /.col-sm-10 -->
+    </div>
+    <!-- /.form-group -->
+
+    <!-- #addPage: Submit -->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit"
+                    class="btn btn-primary"
+                    ng-disabled="addPage.$invalid">
+                Submit
+            </button>
+            <!-- /.btn btn-primary -->
+        </div>
+        <!-- /.col-sm-offset-2 col-sm-10 -->
+    </div>
+    <!-- /.form-group -->
+</form><!-- /.form-horizontal -->
