@@ -19,7 +19,6 @@ angular.module('GarageCommerceApp')
     var roleArn;
     var dynamo;
     var s3bucket;
-    var salutation = 'Hello';
 
     // Private constructor
     function AWSService($q, $log) {
