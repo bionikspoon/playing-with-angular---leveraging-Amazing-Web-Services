@@ -9,8 +9,19 @@
  */
 angular.module('GarageCommerceApp')
 
-  .controller('AppCtrl', function ($scope, Category) {
+  .controller('AppCtrl', function ($scope, Category, Facebook, Auth) {
     $scope.categories = Category.getCategories();
     $scope.user = {};
     $scope.shoppingBasket = [];
+
+    Facebook.getLoginStatus(function (response) {
+      if (response.status === 'connected') {
+        Auth.getUserInfo()//
+          .then(function (data) {
+            $scope.user = data;
+          });
+      } else {
+        Facebook.login();
+      }
+    });
   });

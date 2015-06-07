@@ -17,7 +17,8 @@ angular//
     'ngResource',
     'ngSanitize',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'facebook'
   ])
 
   .config(function ($stateProvider) {
@@ -36,4 +37,8 @@ angular//
       templateUrl: 'views/partials/products.details.html',
       controller: 'ProductDetailsCtrl'
     });
+  })
+
+  .config(function (FacebookProvider) {
+    FacebookProvider.init('1579822162291570');
   });
