@@ -1,12 +1,8 @@
 # garage-commerce
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+## The Project
 
-## Build & development
+This project is about leveraging Amazon Web Services to create a perfectly scalable Angular app.
 
-Run `grunt` for building and `grunt serve` for preview.
+This app uses S3 for file hosting, IAM with Facebook for login credentials, and dynamoDB for a dynamic scalable noSQL backend.
 
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
