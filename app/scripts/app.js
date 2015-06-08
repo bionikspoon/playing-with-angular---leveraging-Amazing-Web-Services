@@ -27,6 +27,11 @@ angular//
       templateUrl: 'views/partials/add-products.html',
       controller: 'AddProductsCtrl'
     });
+    $stateProvider.state('checkout', {
+      url: '/checkout',
+      templateUrl: 'views/partials/checkout.html',
+      controller: 'CheckoutCtrl'
+    });
     $stateProvider.state('category', {
       url: '/:category',
       templateUrl: 'views/partials/products.html',
@@ -52,6 +57,7 @@ angular//
       templateUrl: 'views/partials/products.details.html',
       controller: 'ProductDetailsCtrl'
     });
+
   })
 
   .config(function (FacebookProvider) {

@@ -158,6 +158,31 @@ angular.module('GarageCommerceApp')
         });
         return defer.promise;
       };
+
+      this.saveOrder = function (orders, buyerId) {
+        var orderString = JSON.stringify(orders);
+        AWS.config.region = region;
+        var timestamp = new Date().getTime();
+        var UUID = '#' + buyerId + '-' + 'timestamp';
+
+        var dynamo = new AWS.DynamoDB({
+          params: {TableName: 'garage-commerce-orders'}
+        });
+        var orderData = {
+          Item: {
+            'order_id': {S: UUID},
+            'buyer_id': {S: buyerId},
+            'order_data': {S: orderString}
+          }
+        };
+
+        dynamo.putItem(orderData, function (error, data) {
+          if (error) {
+            $log.error('aws    ', 'error: ', error);
+          }
+        });
+      };
+
     }
 
     // Public API for configuration

@@ -1,0 +1,35 @@
+<div class="page-header">
+    <h1>Checkout</h1>
+</div><!-- /.page-header -->
+
+<div class="col-md-10">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="item in checkoutList">
+            <td>{{ $index+1 }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.price | currency }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td><strong>{{ totalPrice | currency }}</strong></td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- /.table -->
+</div><!-- /.col-md-10 -->
+<div class="col-md-1 pull-right">
+    <button class="btn btn-success"
+            ng-click="placeOrder()">Place Order
+    </button>
+    <!-- /.btn btn-success -->
+</div><!-- /.col-md-1 pull-right -->
