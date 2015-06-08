@@ -12,8 +12,7 @@ angular.module('GarageCommerceApp').controller('ProductDetailsCtrl',
     var id = $stateParams.id;
     $scope.productPicUrl = null;
     $scope.product = {};
-    $scope.productPicUrl = 'https://s3.amazonaws.com/bionikspoon-garage-commerce/' +
-                           $scope.product.picUrl;
+
     AWSService.getProductDetails(id)//
       .then(function (data) {
         $scope.product = data.Item;
