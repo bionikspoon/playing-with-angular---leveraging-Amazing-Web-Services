@@ -7,13 +7,21 @@
  * # ProductDetailsCtrl
  * Controller of the GarageCommerceApp
  */
-angular.module('GarageCommerceApp')
-  .controller('ProductDetailsCtrl', function ($scope, $stateParams) {
-    $scope.id = $stateParams.id;
-
-    $scope.product = {
-      title: 'Supercomputer laptop',
-      price: 21,
-      userName: 'Sandy Peters'
-    };
+angular.module('GarageCommerceApp').controller('ProductDetailsCtrl',
+  function ($scope, $stateParams, $log, AWSService) {
+    var id = $stateParams.id;
+    $scope.productPicUrl = null;
+    $scope.product = {};
+    $scope.productPicUrl = 'https://s3.amazonaws.com/bionikspoon-garage-commerce/' +
+                           $scope.product.picUrl;
+    AWSService.getProductDetails(id)//
+      .then(function (data) {
+        $scope.product = data.Item;
+        $scope.productPicUrl = 'https://s3.amazonaws.com/bionikspoon-garage-commerce/' +
+                               data.Item.picUrl.S;
+        $log.debug('productdetails    ', 'data.Item: ', data.Item);
+      })//
+      .catch(function (error) {
+        $log.error('productdetails    ', 'error: ', error);
+      });
   });

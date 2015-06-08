@@ -1,8 +1,11 @@
 <p class="title">
     {{ id }} </p><!-- /.title -->
 
-<h1>{{ product.title }}</h1>
+<h1>{{ product.title.S }}</h1>
 
-<p>{{ product.description }}</p>
+<img ng-src="{{ productPicUrl }}"
+     height="250px" />
 
-<h3>{{ product.price | currency }}</h3>
+<p>{{ product.description.S }}</p>
+
+<h3>{{ product.price.S | currency }}</h3>

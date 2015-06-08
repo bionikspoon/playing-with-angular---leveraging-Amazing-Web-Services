@@ -143,6 +143,21 @@ angular.module('GarageCommerceApp')
         });
         return defer.promise;
       };
+
+      this.getProductDetails = function (id) {
+        var defer = $q.defer();
+        var params = {Key: {'product_id': {S: id}}};
+
+        dynamo.getItem(params, function (error, data) {
+          if (error) {
+            $log.error('aws    ', 'error: ', error);
+          }
+          if (data) {
+            defer.resolve(data);
+          }
+        });
+        return defer.promise;
+      };
     }
 
     // Public API for configuration

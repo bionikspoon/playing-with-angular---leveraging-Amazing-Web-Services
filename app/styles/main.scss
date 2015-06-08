@@ -21,6 +21,7 @@ body {
   &.ng-enter {
     position: absolute;
     left: 100%;
+
     &.ng-enter-active {
       left: 0;
     }
